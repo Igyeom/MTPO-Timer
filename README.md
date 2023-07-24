@@ -5,6 +5,8 @@ https://github.com/Igyeom/MTPO-Timer/assets/61957594/192f2fe2-c0ef-44c2-9045-f04
 
 ## Quickstart
 
+***DISCLAIMER: THE WINDOWS EXECUTABLE HAS NOT BEEN COMPILED YET. IGNORE THE INSTRUCTIONS THAT'S MARKED FOR WINDOWS***
+
 ### Prerequisites
 - OBS Studio
 - Python 3.x (Required on non-Windows machines)
