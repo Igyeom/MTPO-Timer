@@ -18,6 +18,7 @@ https://github.com/Igyeom/MTPO-Timer/assets/61957594/192f2fe2-c0ef-44c2-9045-f04
 - Execute the program **timer.exe** (on Windows) or enter Terminal to the **src** directory, and type `python3 timer.py` (on non-Windows machines)
 - Open OBS Studio (if on NES console) and right-click the capture card output, then press "Windowed Projector (Source)"
 - Press "Start Capture" on the newly opened window (not the projector, the timer program), then "Get Latest Screenshot", then immediately "Pause Capture" as you see the screen capture.
+- Input the RGB colour of the blue background shown in the winning screen via the textbox below.
 - Win a fight, adjust the green box as shown using the textbox below the screenshot and the "Preview" button.
 ![image](https://github.com/Igyeom/MTPO-Timer/assets/61957594/63b262ee-b7dc-44c2-a209-748b2b6770ed)
 - Press "Confirm" to start capturing AND start fetching the text on the win screen.
