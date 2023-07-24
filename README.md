@@ -12,10 +12,12 @@ https://github.com/Igyeom/MTPO-Timer/assets/61957594/192f2fe2-c0ef-44c2-9045-f04
 - Knowledge that the software is in a very skeleton form.
 
 ### Installation
-- Go to **releases** tab and download **timer.exe** file (recommended) or **timer.py* file and **requirements.txt** (on non-Windows machines)
+- Clone the repository (On GitHub: Code -> Download ZIP)
+- Extract the ZIP file and enter the **src** directory.
 - `pip3 install -r requirements.txt` (on non-Windows machines)
-- Execute the program (on Windows) or enter Terminal, and type `python3 [path-to-timer.py]`
-- Press "Start Capture" on the newly opened window, then "Get Latest Screenshot", then immediately "Pause Capture" as you see the screen capture.
+- Execute the program **timer.exe** (on Windows) or enter Terminal to the **src** directory, and type `python3 timer.py` (on non-Windows machines)
+- Open OBS Studio (if on NES console) and right-click the capture card output, then press "Windowed Projector (Source)"
+- Press "Start Capture" on the newly opened window (not the projector, the timer program), then "Get Latest Screenshot", then immediately "Pause Capture" as you see the screen capture.
 - Win a fight, adjust the green box as shown using the textbox below the screenshot and the "Preview" button.
 ![image](https://github.com/Igyeom/MTPO-Timer/assets/61957594/63b262ee-b7dc-44c2-a209-748b2b6770ed)
 - Press "Confirm" to start capturing AND start fetching the text on the win screen.
