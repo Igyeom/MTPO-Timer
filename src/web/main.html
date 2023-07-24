@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike Tyson's Punch-Out!! Timer</title>
+    <script src="eel.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <style>
+        @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+        html {
+            background: #111;
+        }
+        .times {
+            color: white;
+            font-size: 50px;
+        }
+    </style>
+    <script>
+        async function screenshot() {
+            var img = await eel.screenshot()();
+        }
+        
+        async function reload() {
+            $("#ss").get(0).style.backgroundImage = "url('screenshot.png?r=" + Math.random() + "')";
+        }
+
+        async function getGameFeed() {
+            if (document.getElementById("gameFeedToggle").innerHTML == "Pause Capture") {
+                document.getElementById("gameFeedToggle").innerHTML = "Start Capture"
+            } else {
+                document.getElementById("gameFeedToggle").innerHTML = "Pause Capture"
+                while (document.getElementById("gameFeedToggle").innerHTML == "Pause Capture") {
+                    await screenshot();
+                }
+            }
+        }
+
+        async function preview() {
+            const xywh = $("#pos").val().split(',');
+            $("#board").get(0).style.width = xywh[2] + "px";
+            $("#board").get(0).style.height = xywh[3] + "px";
+            $("#board").get(0).style.transform = "translate(" + xywh[0] + "px, " + xywh[1] + "px)";
+        }
+        
+        async function confirm() {
+            const xywh = $("#pos").val().split(',');
+            const recognised = await eel.cropped_result(xywh[0], xywh[1], xywh[2], xywh[3])();
+            for (time of document.getElementsByClassName("times")) {
+                //console.log(recognised)
+                if (time.innerHTML == '' & recognised != '') {
+                    time.innerHTML = recognised;
+                    break;
+                }
+            }
+        }
+        
+        async function reset() {
+            for (time of document.getElementsByClassName("times")) {
+                time.innerHTML = '';
+            }
+        }
+    </script>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <table>
+        <tr>
+            <td><img src="http://i.imgur.com/QtfJDtn.gif" alt="GJ" width="100px"></td>
+            <td><h1 id="glass-joe" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/dAI7Qdn.gif" alt="VK" width="100px"></td>
+            <td><h1 id="von-kaiser" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/k5FWKNr.gif" alt="H1" width="100px"></td>
+            <td><h1 id="honda-1" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/vZ6Zm1O.gif" alt="D1" width="100px"></td>
+            <td><h1 id="don-1" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/29mSWKz.gif" alt="KH" width="100px"></td>
+            <td><h1 id="king-hippo" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/K50LoUn.gif" alt="GT" width="100px"></td>
+            <td><h1 id="great-tiger" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/tgAlIgf.gif" alt="B1" width="100px"></td>
+            <td><h1 id="bull-1" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/k5FWKNr.gif" alt="H2" width="100px"></td>
+            <td><h1 id="honda-2" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/ENRpHB6.gif" alt="SP" width="100px"></td>
+            <td><h1 id="soda-pop" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/tgAlIgf.gif" alt="B2" width="100px"></td>
+            <td><h1 id="bull-2" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/vZ6Zm1O.gif" alt="D2" width="100px"></td>
+            <td><h1 id="don-2" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/3RuFPEV.gif" alt="MS" width="100px"></td>
+            <td><h1 id="mr-sandman" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/mqdnaT3.gif" alt="SM" width="100px"></td>
+            <td><h1 id="macho-man" class="times"></h1></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/yZYNHgf.gif" alt="MT" width="100px"></td>
+            <td><h1 id="mike-tyson" class="times"><input type="text" placeholder="Time"></h1></td>
+        </tr>
+    </table>
+    <button onclick="reset();" class="button is-turquoise">Reset Run</button>
+    <button onclick="reload();" class="button is-turquoise">Get Latest Screenshot</button>
+    <button onclick="getGameFeed();" class="button is-cyan" id="gameFeedToggle">Start Capture</button><br>
+    
+    <div id="ss" style="background-image: url('screenshot.png'); width: 960px; height: 540px;">
+        <div id="board" style="background: rgb(0,255,0); opacity: 0.5; width: 300px; height: 300px;"></div>
+    </div><br>
+
+    <input type="text" class="input" id="pos" placeholder="Board Position [X,Y,W,H]"><button onclick="preview();" class="button">Preview</button><button onclick="setInterval(confirm, 3000);" class="button">Confirm</button>
+    <input type="text" class="input" placeholder="BG Colour of Winning Screen [R,G,B] (decimal)" id="rgb"><button onclick="eel.set_blue(document.querySelector('#rgb').value);" class="button">Confirm</button>
+    <h1 id="recognised-text"></h1>
+</body>
+</html>
