@@ -12,7 +12,7 @@ https://github.com/Igyeom/MTPO-Timer/assets/61957594/192f2fe2-c0ef-44c2-9045-f04
 - Knowledge that the software is in a very skeleton form.
 
 ### Installation
-- Go to the Releases tab ![Link](https://github.com/Igyeom/MTPO-Timer/releases)
+- Go to the Releases tab [Link](https://github.com/Igyeom/MTPO-Timer/releases)
 - Download the **.zip** file (it should be something like **v0.1.0-indev.zip**)
 - Extract the ZIP file.
 - Run the Batch file named **RUN_ME.bat**
