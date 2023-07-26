@@ -5,8 +5,6 @@ https://github.com/Igyeom/MTPO-Timer/assets/61957594/192f2fe2-c0ef-44c2-9045-f04
 
 ## Quickstart
 
-***DISCLAIMER: THE WINDOWS EXECUTABLE HAS NOT BEEN COMPILED YET. IGNORE THE INSTRUCTIONS THAT'S MARKED FOR WINDOWS***
-
 ### Prerequisites
 - OBS Studio
 - Python 3.x (Required on non-Windows machines)
@@ -17,7 +15,7 @@ https://github.com/Igyeom/MTPO-Timer/assets/61957594/192f2fe2-c0ef-44c2-9045-f04
 - Clone the repository (On GitHub: Code -> Download ZIP)
 - Extract the ZIP file and enter the **src** directory.
 - `pip3 install -r requirements.txt` (on non-Windows machines)
-- Execute the program **timer.exe** (on Windows) or enter Terminal to the **src** directory, and type `python3 timer.py` (on non-Windows machines)
+- Enter Terminal to the **src** directory, and type `python3 timer.py`
 - Open OBS Studio (if on NES console) and right-click the capture card output, then press "Windowed Projector (Source)"
 - Press "Start Capture" on the newly opened window (not the projector, the timer program), then "Get Latest Screenshot", then immediately "Pause Capture" as you see the screen capture.
 - Input the RGB colour of the blue background shown in the winning screen via the textbox below.
