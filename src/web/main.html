@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike Tyson's Punch-Out!! Timer</title>
+    <script src="eel.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <style>
+        @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+        html {
+            background: #111;
+        }
+        .times {
+            color: white;
+            font-size: 50px;
+        }
+        
+        td {
+            border: 5px solid white;
+        }
+    </style>
+    <script>
+        async function screenshot() {
+            var img = await eel.screenshot()();
+        }
+        
+        async function reload() {
+            $("#ss").get(0).style.backgroundImage = "url('screenshot.png?r=" + Math.random() + "')";
+        }
+
+        async function getGameFeed() {
+            if (document.getElementById("gameFeedToggle").innerHTML == "Pause Capture") {
+                document.getElementById("gameFeedToggle").innerHTML = "Start Capture"
+            } else {
+                document.getElementById("gameFeedToggle").innerHTML = "Pause Capture"
+                while (document.getElementById("gameFeedToggle").innerHTML == "Pause Capture") {
+                    await screenshot();
+                }
+            }
+        }
+
+        async function preview() {
+            const xywh = $("#pos").val().split(',');
+            $("#board").get(0).style.width = xywh[2] + "px";
+            $("#board").get(0).style.height = xywh[3] + "px";
+            $("#board").get(0).style.transform = "translate(" + xywh[0] + "px, " + xywh[1] + "px)";
+        }
+        
+        async function confirm() {
+            const xywh = $("#pos").val().split(',');
+            let last_split = 'NA';
+            for (i of document.querySelectorAll(".times")) {
+                if (i.innerHTML == '') {
+                    break;
+                }
+                last_split = i.innerHTML;
+            }
+            console.log(last_split);
+            const recognised = await eel.cropped_result(xywh[0], xywh[1], xywh[2], xywh[3], last_split)();
+            for (time of document.getElementsByClassName("times")) {
+                console.log(recognised)
+                if (time.innerHTML == '' & recognised != '') {
+                    time.innerHTML = recognised;
+                    break;
+                }
+            }
+        }
+        
+        async function reset() {
+            for (time of document.getElementsByClassName("times")) {
+                time.innerHTML = '';
+            }
+        }
+        
+        async function update(id) {
+            const time = document.getElementById("manual-" + id).value;
+            document.getElementById(id).innerHTML = time;
+        }
+    </script>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <table>
+        <tr>
+            <td><img src="http://i.imgur.com/QtfJDtn.gif" alt="GJ" width="100px"></td>
+            <td><h1 id="glass-joe" class="times"></h1></td>
+            <td><input type="text" id="manual-glass-joe" placeholder="Manual Entry"><button onclick="update('glass-joe')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/dAI7Qdn.gif" alt="VK" width="100px"></td>
+            <td><h1 id="von-kaiser" class="times"></h1></td>
+            <td><input type="text" id="manual-von-kaiser" placeholder="Manual Entry"><button onclick="update('von-kaiser')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/k5FWKNr.gif" alt="H1" width="100px"></td>
+            <td><h1 id="honda-1" class="times"></h1></td>
+            <td><input type="text" id="manual-honda-1" placeholder="Manual Entry"><button onclick="update('honda-1')">Update</button></td>
+            
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/vZ6Zm1O.gif" alt="D1" width="100px"></td>
+            <td><h1 id="don-1" class="times"></h1></td>
+            <td><input type="text" id="manual-don-1" placeholder="Manual Entry"><button onclick="update('don-1')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/29mSWKz.gif" alt="KH" width="100px"></td>
+            <td><h1 id="king-hippo" class="times"></h1></td>
+            <td><input type="text" id="manual-king-hippo" placeholder="Manual Entry"><button onclick="update('king-hippo')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/K50LoUn.gif" alt="GT" width="100px"></td>
+            <td><h1 id="great-tiger" class="times"></h1></td>
+            <td><input type="text" id="manual-great-tiger" placeholder="Manual Entry"><button onclick="update('great-tiger')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/tgAlIgf.gif" alt="B1" width="100px"></td>
+            <td><h1 id="bull-1" class="times"></h1></td>
+            <td><input type="text" id="manual-bull-1" placeholder="Manual Entry"><button onclick="update('bull-1')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/k5FWKNr.gif" alt="H2" width="100px"></td>
+            <td><h1 id="honda-2" class="times"></h1></td>
+            <td><input type="text" id="manua-honda-2" placeholder="Manual Entry"><button onclick="update('honda-2')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/ENRpHB6.gif" alt="SP" width="100px"></td>
+            <td><h1 id="soda-pop" class="times"></h1></td>
+            <td><input type="text" id="manual-soda-pop" placeholder="Manual Entry"><button onclick="update('soda-pop')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/tgAlIgf.gif" alt="B2" width="100px"></td>
+            <td><h1 id="bull-2" class="times"></h1></td>
+            <td><input type="text" id="manual-bull-2" placeholder="Manual Entry"><button onclick="update('bull-2')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/vZ6Zm1O.gif" alt="D2" width="100px"></td>
+            <td><h1 id="don-2" class="times"></h1></td>
+            <td><input type="text" id="manual-don-2" placeholder="Manual Entry"><button onclick="update('don-2')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/3RuFPEV.gif" alt="MS" width="100px"></td>
+            <td><h1 id="mr-sandman" class="times"></h1></td>
+            <td><input type="text" id="manual-mr-sandman" placeholder="Manual Entry"><button onclick="update('mr-sandman')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/mqdnaT3.gif" alt="MM" width="100px"></td>
+            <td><h1 id="macho-man" class="times"></h1></td>
+            <td><input type="text" id="manual-macho-man" placeholder="Manual Entry"><button onclick="update('macho-man')">Update</button></td>
+        </tr>
+        <tr>
+            <td><img src="http://i.imgur.com/yZYNHgf.gif" alt="MT" width="100px"></td>
+            <td><h1 id="mike-tyson" class="times"></h1></td>
+            <td><input type="text" id="manual-mike-tyson" placeholder="Manual Entry"><button onclick="update('mike-tyson')">Update</button></td>
+        </tr>
+    </table>
+    <button onclick="reset();" class="button is-turquoise">Reset Run</button>
+    <button onclick="reload();" class="button is-turquoise">Get Latest Screenshot</button>
+    <button onclick="getGameFeed();" class="button is-cyan" id="gameFeedToggle">Start Capture</button><br>
+    
+    <div id="ss" style="background-image: url('screenshot.png'); width: 960px; height: 540px;">
+        <div id="board" style="background: rgb(0,255,0); opacity: 0.5; width: 300px; height: 300px;"></div>
+    </div><br>
+
+    <input type="text" class="input" id="pos" placeholder="Board Position [X,Y,W,H]"><button onclick="preview();" class="button">Preview</button><button onclick="setInterval(confirm, 2000);" class="button">Confirm</button>
+    <input type="text" class="input" placeholder="BG Colour of Winning Screen [R,G,B] (decimal)" id="rgb"><button onclick="eel.set_blue(document.querySelector('#rgb').value);" class="button">Confirm</button>
+    <h1 id="recognised-text"></h1>
+</body>
+</html>
