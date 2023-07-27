@@ -1,14 +1,16 @@
 # Mike Tyson's Punch-Out!! (1987) Automatic In-Game Timer
 
 https://github.com/Igyeom/MTPO-Timer/assets/61957594/192f2fe2-c0ef-44c2-9045-f044726fe790
-https://youtu.be/WIxp5R69MB4
 
 
 ## Quickstart
 
+https://youtu.be/WIxp5R69MB4
+
+
 ### Prerequisites
 - OBS Studio
-- Python 3.x (Required on non-Windows machines)
+- Python 3.x
 - A Capture Card (Required on NES Console, unless on emulator)
 - Knowledge that the software is in a very skeleton form.
 
