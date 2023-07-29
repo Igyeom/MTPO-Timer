@@ -5,7 +5,7 @@ https://github.com/Igyeom/MTPO-Timer/assets/61957594/192f2fe2-c0ef-44c2-9045-f04
 
 ## Quickstart
 
-https://youtu.be/WIxp5R69MB4
+[Video Guide](https://youtu.be/SJmCxPVgPsw)
 
 
 ### Prerequisites
